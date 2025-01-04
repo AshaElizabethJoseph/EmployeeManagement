@@ -1,4 +1,5 @@
 using EmployeeManagement.Data;
+using EmployeeManagement.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.InMemory;
 namespace EmployeeManagement
@@ -23,6 +24,8 @@ namespace EmployeeManagement
                     .AllowAnyMethod();
                 });
             });
+            // add the employee repository to the DI container
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
             var app = builder.Build();
             app.UseCors("MyCors");
