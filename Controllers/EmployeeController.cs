@@ -39,5 +39,19 @@ namespace EmployeeManagement.Controllers
             await _employeeRepository.AddEmployeeAsync(employee);
             return CreatedAtAction(nameof(GetEmployeeById), new {id = employee.Id},employee);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteEmployee(int id)
+        {
+            try
+            {
+                await _employeeRepository.DeleteEmployeeAsync(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+        }
     }
 }
