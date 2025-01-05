@@ -44,6 +44,7 @@ namespace EmployeeManagement
                     c.RoutePrefix = string.Empty;
                 });
             }
+            app.MapControllers();
             app.UseCors("MyCors");
 
             app.MapGet("/", () => "Hello World!");
