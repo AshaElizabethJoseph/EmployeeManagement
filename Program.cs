@@ -27,6 +27,7 @@ namespace EmployeeManagement
             // add the employee repository to the DI container
             builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
+            builder.Services.AddControllers();
             var app = builder.Build();
             app.UseCors("MyCors");
 
