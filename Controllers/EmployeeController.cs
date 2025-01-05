@@ -53,5 +53,23 @@ namespace EmployeeManagement.Controllers
                 return NotFound();
             }
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateEmployeeAsync(int id, Employee employee)
+        {
+            if (id != employee.Id)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                await _employeeRepository.UpdateEmployeeAsync(employee);
+                return CreatedAtAction(nameof(GetEmployeeById), new { id = employee.Id }, employee);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+        }
     }
 }
